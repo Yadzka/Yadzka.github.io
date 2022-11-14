@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<style>
+*{
+    align-items: center;
+    text-align: center;
+    font-family: 'Inter';
+}
+body{
+    background-image: url("Gambar/MD.png");
+    /* width: auto;
+    height: auto; */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+#tampilanAwal {
+    border: none;
+    position: relative;
+    right: 20px;
+}
+
+button:active{
+    background: RGBA(42,250,7,0) 93.95%;
+    color:  #2AFF07;
+}
+
+canvas {
+    border:1px solid black;
+}
+
+#icon {
+    position: absolute;
+    height: 67px;
+    width: 95px;
+    left: 710px;
+    top: 85px;
+    background-image: url("Gambar/Pesawat.png");
+    border-radius: 0px;    
+}
+.btnStart {
+    margin: auto;
+    margin-top: 370px;
+    margin-left: 40px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.about1 {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */  
+    padding: 0.5em 1em; 
+    
+    position: absolute;
+    top: 430px;
+    left: 633px;
+}
+
+.about {
+    margin: auto;
+    display: none;
+    position: absolute;
+    padding: 0.5em 1em;
+}
+
+.about-content {
+    position: absolute;
+    height: 50vmin;
+    margin-top: 9em;
+    margin-left: 20em;
+}
+
+.back1 {
+    display: none;
+    position: absolute;
+    padding: 0 0;
+    top: 180px;
+    left: 350px;
+    
+}
+</style>
+</head>
+<body>
+    <div class="border">
+        <div id="icon"></div>
+        <div class="about1" id="about1" onclick="masukabout()">
+            <img src="Gambar/About1.png" width="239px">
+        </div>
+
+        <div class="about" id="about">
+            <img src="Gambar/Tentang.png" class="about-content">
+            <div class="back1" id="back1" onclick="backhome1()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+              </svg>
+            </div>
+        </div>
+    
+        <div id="tampilanAwal">
+            <a href="Plane.html">
+                <img src="Gambar/Start.png" width="250px" class="btnStart">
+            </a>
+        </div>
+        </div>
+    </div>
+        <script>
+        const masukabout = () => {
+            if (about1.style.display == "none") {
+                about1.style.display = "block"
+            } else {
+                tampilanAwal.style.display = "none"
+                about1.style.display = "none"
+                about.style.display = "block"
+                back1.style.display = "block"
+            }
+        }
+
+        const backhome1 = () => {
+            if (back1.style.display == "none") {
+                back1.style.display = "block"
+            } else {
+                tampilanAwal.style.display = "block"
+                about1.style.display = "block"
+                about.style.display = "none"
+                back1.style.display = "none"
+            }
+        }
+        </script>
+</body>
+</html>
