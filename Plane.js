@@ -1,7 +1,9 @@
+// Var menyimpan data sementara
 var player;
 var myObstacles = [];
 var myBackground;
 var myScore;
+var myMusic;
 
 const up = 87;
 const left = 65;
@@ -12,9 +14,11 @@ const right = 68;
 window.addEventListener("keydown", move);
 window.addEventListener("keyup", stopMove);
 
+// Membuat fungsi dari bagian player, score, musik, dan background(Latar Belakang)
 function startGame() {
   player = new component(125, 70, "Gambar/Pesawat.png", 10, 190, "image");
   myScore = new component("30px", "Arial", "red", 520, 40, "text");
+  myMusic = new sound("Music.mp3")
   myBackground = new component(
     1200,
     600,
@@ -23,9 +27,10 @@ function startGame() {
     0,
     "background"
   );
+  myMusic.play();
   myGameArea.start();
 }
-// let canvas = DOCzzz
+// Membuat Area pada Game
 var myGameArea = {
   canvas: document.createElement("canvas"),
   start: function () {
@@ -51,7 +56,7 @@ var myGameArea = {
   },
 };
 
-// fungsi component
+// fungsi pada komponen
 function component(width, height, color, x, y, type) {
   this.type = type;
   if (type == "image" || type == "background") {
@@ -130,7 +135,7 @@ function component(width, height, color, x, y, type) {
     return crash;
   };
 
-  // function hit untuk memberi batasan agar karakter dan obstcales tidak melewati batas canvas
+  // fungsi hit untuk memberi batasan agar karakter dan obstcales tidak melewati batas canvas
   this.hitTop = function () {
     let objTop = this.height - this.height;
     if (this.y < objTop) {
@@ -165,6 +170,23 @@ function everyinterval(n) {
   return false;
 }
 
+// Fungsi Suara
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+      this.sound.play();
+  }
+  this.stop = function(){
+      this.sound.pause();
+  }    
+}
+
+// Memperbaharui suatu bagian game
 function updateGameArea() {
   var x,
     minHeight,
@@ -182,10 +204,12 @@ function updateGameArea() {
   for (i = 0; i < myObstacles.length; i += 1) {
     if (player.crashWith(myObstacles[i])) {
       myGameArea.stop();
+      myMusic.stop();
       return;
     }
   }
   myGameArea.clear();
+  // Membuat Obstacle dan membuat obstacle jadi random dan banyak
   myGameArea.frameNo += 1;
   if (myGameArea.frameNo == 1 || everyinterval(50)) {
     x = myGameArea.canvas.width;
@@ -226,6 +250,7 @@ function updateGameArea() {
   player.update();
 }
 
+// Fungsi buat menggerakkan character
 function move(event) {
   const keyPressed = event.keyCode;
   if (keyPressed == left) {
@@ -239,6 +264,8 @@ function move(event) {
   }
 }
 
+
+// Fungsi buat menggerakkan character
 function stopMove(event) {
   const keyPressed = event.keyCode;
   if (keyPressed == left) {
